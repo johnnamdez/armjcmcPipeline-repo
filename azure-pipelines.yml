@@ -13,7 +13,7 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'armjcmcPipeline-conn'
+    azureResourceManagerConnection: 'armtemplateconn'
     subscriptionId: '152ce16f-df66-46a0-ac4b-f873ac7d5179'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'armtemplaterg'
