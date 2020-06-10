@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'armtemplateconn'
+    subscriptionId: '152ce16f-df66-46a0-ac4b-f873ac7d5179'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'armtemplaterg'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'CreateWebApp/azuredeploy.json'
+    overrideParameters: '-projectName armjcmcPipeline -linkedTemplateUri https://raw.githubusercontent.com/johnnamdez/armjcmcPipeline-repo/master/CreateWebApp/linkedStorageAccount.json'
+    deploymentMode: 'Incremental'
